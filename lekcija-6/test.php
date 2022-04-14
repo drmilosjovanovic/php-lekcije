@@ -6,11 +6,11 @@ if(count($_POST) > 0) {
     // form is submitted
     if(checkLogin($_POST['username'], $_POST['pass'])) {
         // logged in
-        echo "You have successfully logged in!!!";
+        echo "Vi ste se uspesno ulogovali!!!";
         storeLoginLog();
     } else {
         // not logged in
-        echo "LOGIN FAILED!!!";
+        echo "Login nije uspeo!!!";
     }
 }
 
