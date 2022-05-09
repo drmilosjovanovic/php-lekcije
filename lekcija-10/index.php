@@ -1,13 +1,31 @@
 <html>
 <head>
-    <title>Drugi domaci</title>
+    <title>Mailing list</title>
 </head>
 <body>
 <?php
 if(count($_POST) > 0) {
+
   $email = $_POST['email'];
+
+  // check if email is empty
   if (!empty($email)) {
 
+    // split email address in two segments
+    $emailParsed = explode('@', $email);
+
+    if(count($emailParsed) != 2) {
+      die('You have entered an invalid email address!');
+    }
+
+    // split domain in two segments
+    $domainParsed = explode('.', $emailParsed[1]);
+
+    if(count($domainParsed) != 2) {
+      die('You have entered an invalid email address!');
+    }
+
+    // connect to mysql database
     $connection = mysqli_connect("localhost","root","","my_database");
 
     // Check connection
@@ -23,6 +41,7 @@ if(count($_POST) > 0) {
 
     if ($result) {
 
+      // check if email address already exists in the DB
       if (mysqli_num_rows($result) > 0) {
 
         echo "Entered email address already exists in the database";
@@ -44,8 +63,6 @@ if(count($_POST) > 0) {
       echo "Error: " . mysqli_error($connection);
     }    
 
-
-    // echo 'Hvala (' . $_POST['email'] . ') sto ste se Subscribe-ovali na nasu mail listu!';
   } else {
     echo 'Vasa mail adresa je pogresna (' . $_POST['email'] . ')';
   } 
@@ -53,7 +70,7 @@ if(count($_POST) > 0) {
 ?>
     <form action="index.php" method="POST">
     <p>Unesi svoju e-mail adresu i klik na Subscribe!</p>
-    <p>E-mail:<input type="email" name="email" id="email"> </br> </br>
+    <p>E-mail:<input type="email" name="email" id="email" required> </br> </br>
     <input type="submit" value="Subscribe"> </br>    
     </form>
     </body>
