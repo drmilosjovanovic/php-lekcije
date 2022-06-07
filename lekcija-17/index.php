@@ -46,7 +46,11 @@ class Cars extends Vehicles {
 
 }
 
-$car1 = new Cars();
+class SportCars extends Cars {
+
+}
+
+$car1 = new SportCars();
 $car1->setDoor(4);
 $car1->setColor('blue');
 echo $car1->getColor();
