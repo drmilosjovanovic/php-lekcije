@@ -1,5 +1,6 @@
 <?php
 ini_set('display_errors','On');
+
 // Controllers
 use Levelup\App\Controllers\Home;
 use Levelup\App\Controllers\AboutUs;
@@ -32,14 +33,16 @@ switch($_GET['page']) {
         $page->index();        
         break;
 
-    // Contact page
+    // Register page
     case "register":
 
         $page = new Register();        
 
         if(count($_POST) == 0) {
+            // display register form
             $page->index();  
         } else {
+            // store user & display success page
             $page->storeUser();
         }
         break;
