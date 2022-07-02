@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 28, 2022 at 08:03 PM
+-- Generation Time: Jul 02, 2022 at 05:57 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -32,6 +32,7 @@ CREATE TABLE `ads` (
   `user_id` int(11) NOT NULL,
   `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fileName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -39,14 +40,9 @@ CREATE TABLE `ads` (
 -- Dumping data for table `ads`
 --
 
-INSERT INTO `ads` (`id`, `user_id`, `phone_number`, `description`, `creation_date`) VALUES
-(4, 5, '2342423434', '', '2022-06-28 17:45:03'),
-(5, 5, '654654654654', 'This is sample text.', '2022-06-28 17:45:33'),
-(6, 5, '2134234234234', 'This is another ad.', '2022-06-28 17:46:19'),
-(7, 5, '234242342', 'This is sample text. This is another sample text. This is long text.', '2022-06-28 17:47:55'),
-(8, 5, '234242342', 'This is sample text. This is another sample text. This is long text.', '2022-06-28 17:54:20'),
-(9, 5, '2213423423', 'This is new content. This is sample contrent.', '2022-06-28 17:54:38'),
-(10, 5, '2213423423', 'This is new content. This is sample contrent.', '2022-06-28 17:56:03');
+INSERT INTO `ads` (`id`, `user_id`, `phone_number`, `description`, `fileName`, `creation_date`) VALUES
+(2, 5, '3453454', 'This is sample text this is text.', '117460675.rar', '2022-07-02 15:45:11'),
+(3, 5, '3425234234', 'This is another text with PNG', '344944890.png', '2022-07-02 15:45:33');
 
 -- --------------------------------------------------------
 
@@ -96,7 +92,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `users`
