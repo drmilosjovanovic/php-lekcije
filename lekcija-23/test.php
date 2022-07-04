@@ -56,17 +56,4 @@ class Security {
 }
 
 
-try {
-
-    // do some actions
-    $security = new Security();
-    var_dump($security->login('milos', '1234'));
-
-} catch(DatabaseException $exception) {
-    echo "Database exception has occurred";
-} catch(LoginException $exception) {
-    echo "Login exception has occurred";
-} catch(\Exception $exception) {
-    // display error
-    echo $exception->getMessage();
-}
+echo "milos";
