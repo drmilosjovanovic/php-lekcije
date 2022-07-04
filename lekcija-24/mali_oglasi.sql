@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 02, 2022 at 05:57 PM
+-- Generation Time: Jul 04, 2022 at 08:51 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -41,8 +41,9 @@ CREATE TABLE `ads` (
 --
 
 INSERT INTO `ads` (`id`, `user_id`, `phone_number`, `description`, `fileName`, `creation_date`) VALUES
-(2, 5, '3453454', 'This is sample text this is text.', '117460675.rar', '2022-07-02 15:45:11'),
-(3, 5, '3425234234', 'This is another text with PNG', '344944890.png', '2022-07-02 15:45:33');
+(5, 5, '0641941321', 'Prodajem prasice. Cena 200din/kg', '863256166.jpg', '2022-07-03 17:52:00'),
+(8, 5, '06412345678', 'Prodajem Golf II. 1999. god. Polovan. Cena 1000e', '53072302.jpg', '2022-07-03 18:17:09'),
+(13, 5, '06412345687', 'Prodajem kazan za pecenje rakije 200l.', '', '2022-07-04 18:23:12');
 
 -- --------------------------------------------------------
 
@@ -92,7 +93,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
