@@ -41,6 +41,11 @@
                 <a href="index.php?page=single-ad&id=<?php echo $ad['id']?>">                
                     <?php echo $ad['description']?>
                 </a>
+                <?php 
+                if($securityService->isLoggedIn() && $securityService->isAdmin()) {
+                ?>
+                &nbsp;&nbsp;[<a href="index.php?page=delete-ad&id=<?php echo $ad['id']?>" style="color: red">Delete</a>]
+                <?php } ?>
             </div>
         </div>
         <div class="ad-phone">

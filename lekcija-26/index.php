@@ -13,6 +13,7 @@ use Levelup\App\Controllers\Login;
 use Levelup\App\Controllers\Logout;
 use Levelup\App\Controllers\CreateAd;
 use Levelup\App\Controllers\SingleAd;
+use Levelup\App\Controllers\DeleteAd;
 
 
 use Levelup\App\Services\Calculator;
@@ -41,6 +42,11 @@ switch($_GET['page']) {
 
     case "single-ad":
         $page = new SingleAd();
+        $page->index();
+        break;
+
+    case "delete-ad":
+        $page = new DeleteAd();
         $page->index();
         break;
 

@@ -15,6 +15,17 @@ class File {
         return true;
     }
 
+    public function delete($fileName) {
+
+        $filePath = "upload/" . $fileName;
+
+        if(!\file_exists($filePath)) {
+            throw new \Exception('You are trying to delete the file that does not exist.');
+        }
+
+        unlink($filePath);
+    }
+
     public function validateImage($extension) {
 
         if(in_array($extension, self::ALLOWED_IMAGE_TYPES)) {

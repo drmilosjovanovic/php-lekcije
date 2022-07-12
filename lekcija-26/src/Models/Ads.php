@@ -91,4 +91,11 @@ class Ads extends Common {
 
         $this->query($sql);
     }
+
+    public function delete($id) {
+
+        $sql = "DELETE FROM `ads` WHERE `id` = '$id'";
+
+        $this->query($sql);
+    }
 }
