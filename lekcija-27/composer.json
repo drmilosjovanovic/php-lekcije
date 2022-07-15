@@ -1,0 +1,11 @@
+{
+    "name": "levelup/app",
+    "autoload": {
+        "psr-4": {
+            "Levelup\\App\\": "src/"
+        }
+    },
+    "require": {
+        "phpmailer/phpmailer": "^6.6"
+    }
+}
