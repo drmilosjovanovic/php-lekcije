@@ -116,11 +116,13 @@ switch($_GET['page']) {
     }
 } catch(DatabaseException $exception) {
 
+    file_put_contents('log.txt', date('Y-m-d H:i:s') . ":" . $exception->getMessage() . "-" . $exception->getFile() . " ". $_SERVER['REMOTE_ADDR'] ,FILE_APPEND);
     $page = new Home();
     $page->showDatabaseError($exception->getMessage());      
 
 } catch(\Exception $exception) {
 
+    file_put_contents('log.txt', date('Y-m-d H:i:s') . ":" . $exception->getMessage() . "-" . $exception->getFile() . " ". $_SERVER['REMOTE_ADDR'] ,FILE_APPEND);
     $page = new Home();
     $page->showError($exception->getMessage());    
 

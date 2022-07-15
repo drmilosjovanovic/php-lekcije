@@ -3,16 +3,23 @@
 namespace Levelup\App\Services\Auth;
 
 use Levelup\App\Models\Users;
+use Levelup\App\Models\LoginHistory;
 
 class Security {
 
     public function login($username, $password) {
         
         $usersModel = new Users();
+        $loginHistoryModel = new LoginHistory();
 
         $detectedUser = $usersModel->getByUsernameAndPassword($username, $password);
 
+        // login success
         if(is_array($detectedUser)) {
+
+            $ipAddress = $_SERVER['REMOTE_ADDR'];
+            $loginHistoryModel->insert($ipAddress, $detectedUser['id']);
+
             return [
                 'user_level' => $detectedUser['user_level']
             ];
