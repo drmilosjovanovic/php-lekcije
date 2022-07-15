@@ -3,6 +3,7 @@ body {
     margin: 0;
     border: 0;
     outline: 0;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .header {
@@ -14,9 +15,15 @@ body {
 }
 
 .content {
-    padding: 20px;
+    padding: 70px;
     text-align: center;
     font-size: 19px;
+}
+
+.container {
+    padding: 20px 300px 20px 300px;
+    font-size: 19px;
+    display: inline-flex;
 }
 
 .top-menu {
@@ -28,6 +35,10 @@ body {
     margin: 15px;
 }
 
+.top-menu a {
+    text-decoration: none;
+}
+
 .footer {
     background:#368C96;
     width: 100%;
@@ -37,6 +48,77 @@ body {
     text-align: center;
     padding-top: 10px;
 }
+
+
+.our-story {
+    padding: 50px;
+}
+
+.mission {
+    margin-top: 100px;
+    padding: 50px;
+}
+
+
+.mission a {
+    text-decoration: none;
+    color: #368C96;
+}
+
+.image-story img {
+    max-width: 400px;
+    float: right;
+}
+
+.image-mission img {
+    max-width: 400px;
+    float: left;
+    margin-right: 15px;
+}
+
+.about-us {
+    display: inline-flex;
+    margin-top: 100px;
+}
+
+.contact-text {
+    margin-right: 150px;
+}
+
+
+.contact-name {
+    width: 150px;
+    height: 20px;
+    padding: 12px 20px;
+    font-size: 17px;
+    border-radius: 8px;
+}
+
+.contact-message {
+    width: 300px;
+    height: 100px;
+    padding: 12px 20px;
+    font-size: 17px;
+    border-radius: 8px;
+}
+
+.form #send {
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    width: 100px;
+    height: 55px;
+    font-size: 20px;
+    background-color: #368C96;
+    color: white;
+    
+}
+
+.form #send:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}
+
 
 .error {
     font-size: 14px;
