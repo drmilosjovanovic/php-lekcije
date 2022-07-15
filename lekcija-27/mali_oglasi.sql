@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 04, 2022 at 08:51 PM
+-- Generation Time: Jul 15, 2022 at 07:51 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.28
 
@@ -30,6 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `ads` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
   `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `fileName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -40,10 +41,51 @@ CREATE TABLE `ads` (
 -- Dumping data for table `ads`
 --
 
-INSERT INTO `ads` (`id`, `user_id`, `phone_number`, `description`, `fileName`, `creation_date`) VALUES
-(5, 5, '0641941321', 'Prodajem prasice. Cena 200din/kg', '863256166.jpg', '2022-07-03 17:52:00'),
-(8, 5, '06412345678', 'Prodajem Golf II. 1999. god. Polovan. Cena 1000e', '53072302.jpg', '2022-07-03 18:17:09'),
-(13, 5, '06412345687', 'Prodajem kazan za pecenje rakije 200l.', '', '2022-07-04 18:23:12');
+INSERT INTO `ads` (`id`, `user_id`, `category_id`, `phone_number`, `description`, `fileName`, `creation_date`) VALUES
+(25, 5, 1, '0631232111', 'Prodajem Golf II. 1000e', '691057751.jpg', '2022-07-12 16:33:47');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `creation_date`) VALUES
+(1, 'Vehicles', '2022-07-08 16:25:50'),
+(2, 'Real estate', '2022-07-08 16:25:56'),
+(4, 'Pets', '2022-07-08 16:26:17'),
+(5, 'Food', '2022-07-08 16:26:28'),
+(6, 'Other', '2022-07-08 16:26:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login_history`
+--
+
+CREATE TABLE `login_history` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `login_date` timestamp NOT NULL DEFAULT current_timestamp(),
+  `login_ip_address` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `login_history`
+--
+
+INSERT INTO `login_history` (`id`, `user_id`, `login_date`, `login_ip_address`) VALUES
+(2, 5, '2022-07-15 17:30:19', '::1');
 
 -- --------------------------------------------------------
 
@@ -56,6 +98,7 @@ CREATE TABLE `users` (
   `full_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `username` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_level` tinyint(1) NOT NULL DEFAULT 0,
   `creation_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -63,10 +106,11 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `full_name`, `username`, `password`, `creation_date`) VALUES
-(5, 'Milos', 'milos', '202cb962ac59075b964b07152d234b70', '2022-06-28 16:45:11'),
-(11, 'Nevena', 'nevena', '441b328b4a247949753588398984ba71', '2022-06-21 17:21:58'),
-(13, 'marija', 'milica', '932e512d0da2821efe2b81539f0b82c5', '2022-06-28 16:43:34');
+INSERT INTO `users` (`id`, `full_name`, `username`, `password`, `user_level`, `creation_date`) VALUES
+(5, 'Milos', 'milos', '202cb962ac59075b964b07152d234b70', 0, '2022-06-28 16:45:11'),
+(11, 'Nevena', 'nevena', '441b328b4a247949753588398984ba71', 0, '2022-06-21 17:21:58'),
+(13, 'marija', 'milica', '932e512d0da2821efe2b81539f0b82c5', 0, '2022-06-28 16:43:34'),
+(14, 'Administrator', 'admin', '21232f297a57a5a743894a0e4a801fc3', 2, '2022-07-08 17:32:23');
 
 --
 -- Indexes for dumped tables
@@ -76,6 +120,20 @@ INSERT INTO `users` (`id`, `full_name`, `username`, `password`, `creation_date`)
 -- Indexes for table `ads`
 --
 ALTER TABLE `ads`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `login_history`
+--
+ALTER TABLE `login_history`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
@@ -93,13 +151,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `ads`
 --
 ALTER TABLE `ads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `login_history`
+--
+ALTER TABLE `login_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
@@ -109,6 +179,7 @@ ALTER TABLE `users`
 -- Constraints for table `ads`
 --
 ALTER TABLE `ads`
+  ADD CONSTRAINT `category_id` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
