@@ -13,10 +13,9 @@ class CreateAd {
     public function index() {
         
         $securityService = new Security();
+        $categoriesModel = new Categories();        
 
         $errors = '';
-
-        $categoriesModel = new Categories();
 
         include('src/Views/header.php');
         include('src/Views/create-ad.php');
@@ -27,6 +26,7 @@ class CreateAd {
     public function storeAd() {
 
         $securityService = new Security();
+        $categoriesModel = new Categories();
 
         $adsService = new Ads();
 
