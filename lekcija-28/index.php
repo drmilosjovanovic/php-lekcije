@@ -14,16 +14,19 @@ use Levelup\App\Controllers\Logout;
 use Levelup\App\Controllers\CreateAd;
 use Levelup\App\Controllers\SingleAd;
 use Levelup\App\Controllers\DeleteAd;
-
-
 use Levelup\App\Services\Calculator;
 use Levelup\App\Services\Auth\Security;
-
-
 use Levelup\App\Exceptions\DatabaseException;
+use Monolog\Level;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+use Monolog\Handler\FirePHPHandler;
 
 
 require 'vendor/autoload.php';
+
+$logger = new Logger('mali_oglasi');
+$logger->pushHandler(new StreamHandler(__DIR__.'/my_app.log', Logger::ERROR));
 
 try {
 
@@ -116,13 +119,13 @@ switch($_GET['page']) {
     }
 } catch(DatabaseException $exception) {
 
-    file_put_contents('log.txt', date('Y-m-d H:i:s') . ":" . $exception->getMessage() . "-" . $exception->getFile() . " ". $_SERVER['REMOTE_ADDR'] ,FILE_APPEND);
+    $logger->emergency($exception->getMessage());
     $page = new Home();
     $page->showDatabaseError($exception->getMessage());      
 
 } catch(\Exception $exception) {
 
-    file_put_contents('log.txt', date('Y-m-d H:i:s') . ":" . $exception->getMessage() . "-" . $exception->getFile() . " ". $_SERVER['REMOTE_ADDR'] ,FILE_APPEND);
+    $logger->error($exception->getMessage());
     $page = new Home();
     $page->showError($exception->getMessage());    
 
